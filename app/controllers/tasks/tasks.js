@@ -87,10 +87,32 @@ Tasks.createTask = function getTask(req, res) {
  * return only neccessary fields
  */
 Tasks.destroyTask = function getTask(req, res) {
-  return res.status(200).send({
-    success: true,
-    message: 'Not avaliable 2'
-  });
+	req.checkParams('id', 'Invalid id parameter').isMongoId().notEmpty();
+	var errors = req.validationErrors();
+  //validate errors
+  if (errors) {
+    return res
+      .status(400)
+      .send({
+        success: 400,
+        validationErrors: 'id is invalid',
+        errors: errors
+      });
+  }
+  Task.findOne({
+    _id: req.params.id
+	}, function (err, docs) {
+		if(err || !docs){
+			return res
+      .status(400)
+      .send({
+        success: 400,
+        validationErrors: 'id is invalid'
+      });
+		}
+	  docs.remove(); //Remove all the documents that match!
+	  return res.status(200).send(docs);
+	});
 };
 
 /**
