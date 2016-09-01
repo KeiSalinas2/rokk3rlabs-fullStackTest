@@ -1,3 +1,11 @@
+<div class="alert alert-warning text-center" role="alert" ng-if="notificationError">
+  <a href="#" class="alert-link"> Error on action</a>
+</div>
+
+<div class="alert alert-success text-center" role="alert" ng-if="notificationSuccess">
+  <a href="#" class="alert-link"> Action successfully completed </a>
+</div>
+
 <div class="row" ng-init="loadTasks()">
   <h3 class="text-center b-b">Tasks </h3>
   <div class="col-lg-6">
