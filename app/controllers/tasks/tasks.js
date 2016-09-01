@@ -116,12 +116,52 @@ Tasks.destroyTask = function getTask(req, res) {
 };
 
 /**
- * Update profile from current logged user
+ * Update task
  * if succes all information will be updated
  */
 Tasks.updateTask = function updateTask(req, res) {
-  return res.status(200).send({
-    success: true,
-    message: 'Not avaliable'
+	//validate params
+	req.checkQuery('id', 'Invalid id parameter').isMongoId().notEmpty();
+  req.checkQuery('priority', 'Invalid priority parameter').isInt({ min: 1, max: 5 }).notEmpty();
+  req.checkQuery('dueDate', 'Invalid dueDate parameter').notEmpty();
+  req.checkQuery('name', 'Invalid name parameter').contains().notEmpty();
+
+  var errors = req.validationErrors();
+  //validate errors
+  if (errors) {
+    return res
+      .status(500)
+      .send({
+        success: 500,
+        errors: errors
+      });
+  }
+
+  var query = {
+  	priority: req.query.priority,
+  	dueDate: req.query.dueDate,
+  	name: req.query.name
+  };
+
+  Task.update({
+    _id: req.query.id
+  }, query, function(err, taskData) {
+    if (err){
+      return res
+        .status(500)
+        .send({  
+          success: 500,
+          errors: err
+        });
+    }
+    if(taskData.n === 0){
+      return res
+          .status(500)
+          .send({
+            success: 500,
+          	errors: 'Task not found'
+          });
+    }
+    return res.status(200).send(taskData);
   });
 };

@@ -7,11 +7,6 @@ var taskSchema = new Schema({
   dueDate: { type: String },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-  /*type: {
-    type: String,
-    enum: ['pending', 'overdue'],
-    required: true
-  },*/
   priority: { type: Number },
 }, {
   toObject: {
