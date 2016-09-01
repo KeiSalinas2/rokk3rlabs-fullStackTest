@@ -22,10 +22,27 @@ angular.module('app.controller', [])
 
       Api.createTask(data).then(function(res){
         console.log(res);
+        if(res.status === 201)
+          $scope.loadTasks();
       })
     };
 
-    Api.apiTest().then(function(resp){
-      console.log(resp);
-    });
+    $scope.loadTasks = function(){
+
+      Api.apiTest().then(function(resp){
+        $scope.overdue = [];
+        $scope.pending = [];
+        var today = Date.parse(new Date());
+        var data = resp.data;
+        _.forEach(data, function(task){
+          var _date = Date.parse(new Date(task.dueDate));
+          task.dueDate = _date;
+          if(_date > today)
+            $scope.pending.push(task)
+          else
+            $scope.overdue.push(task);
+        });
+      });
+
+    }
   }]);
