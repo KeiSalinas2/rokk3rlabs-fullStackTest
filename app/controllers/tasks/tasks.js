@@ -18,7 +18,7 @@ Tasks.getTask = function getTask(req, res) {
 	var sort = '-_.id';
 	if(req.query.sort)
 		sort = req.query.sort;
-	Task.findOne({}).sort(sort).exec(function(err, data){
+	Task.find({}).sort(sort).exec(function(err, data){
 		if (err) {
       return res
         .status(500)
