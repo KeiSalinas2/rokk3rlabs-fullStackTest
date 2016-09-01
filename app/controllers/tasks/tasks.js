@@ -14,10 +14,18 @@ var Tasks = module.exports = function() {
  * return only neccessary fields
  */
 Tasks.getTask = function getTask(req, res) {
-  return res.status(200).send({
-    success: true,
-    message: 'Not avaliable 2'
-  });
+	//
+	Task.findOne({}, function(err, data){
+		if (err) {
+      return res
+        .status(500)
+        .send({
+          status: 500,
+          errors: err
+        });
+    }
+	  return res.status(200).send(data);
+	});
 };
 
 /**
