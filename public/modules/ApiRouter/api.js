@@ -7,4 +7,8 @@ angular.module('app.services').service('ApiService', ['$http', function($http) {
       return $http.get(url + 'tasks/');
     };
 
+    this.createTask = function(data){
+      return $http.post(url+ 'tasks/create?name='+ data.name + '&dueDate='+data.dueDate + '&priority=' + data.priority);
+    };
+
   }]);
