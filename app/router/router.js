@@ -5,7 +5,7 @@ var Controllers = require('../controllers');
 
 function Router(app, passport) {
   // user routes
-  app.use('/users', Controllers.Users);
+  app.use('/tasks', Controllers.Tasks);
 
   //The 404 Route (ALWAYS Keep this as the last route)
   app.use(function(req, res) {
