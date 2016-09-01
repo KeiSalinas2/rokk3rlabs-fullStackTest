@@ -18,6 +18,13 @@ angular
   }]);
 
 angular.module('app.controller', [])
-  .controller('appController', ['$scope', '$state', function($scope, $state) {
+  .controller('appController', ['$scope', '$state', 'ApiService', function($scope, $state, Api) {
 
+    $scope.templates = {
+      header: 'templates/base/header_tpl.html',
+    };
+
+    Api.apiTest().then(function(resp){
+      console.log(resp);
+    });
   }]);
