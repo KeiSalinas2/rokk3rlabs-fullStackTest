@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-init="loadTasks()">
   <h3>Tasks </h3>
   <div class="col-lg-6">
     <div class="panel panel-default">
@@ -15,10 +15,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="n in [0,1,2,3,4]">
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr data-ng-repeat="n in pending track by $index">
+            <td>{{n.name}}</td>
+            <td>{{n.dueDate | date:'yyyy-MM-dd'}}</td>
+            <td>{{n.priority}}</td>
             <td>
               <button type="button" class="btn btn-danger" aria-label="Left Align">
                 <span class="fa fa-trash-o" aria-hidden="true"></span>
@@ -42,10 +42,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="n in [0,1,2,3,4]">
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr data-ng-repeat="n in overdue track by $index">
+            <td>{{n.name}}</td>
+            <td>{{n.dueDate | date:'yyyy-MM-dd'}}</td>
+            <td>{{n.priority}}</td>
             <td>
               <button type="button" class="btn btn-danger" aria-label="Left Align">
                 <span class="fa fa-trash-o" aria-hidden="true"></span>
