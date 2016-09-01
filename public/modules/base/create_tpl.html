@@ -20,8 +20,11 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <button data-ng-click="createTask()" class="btn btn-default">Create</button>
+    <div class="col-lg-offset-2 col-lg-10" ng-if="!isEdit">
+      <button data-ng-click="createTask()" class="btn btn-success">Create</button>
+    </div>
+    <div class="col-lg-offset-2 col-lg-10" ng-if="isEdit">
+      <button data-ng-click="updateTask(newTask)" class="btn btn-success">Update</button>
     </div>
   </div>
 </form>

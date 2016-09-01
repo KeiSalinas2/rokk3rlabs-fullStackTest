@@ -1,5 +1,5 @@
 <div class="row" ng-init="loadTasks()">
-  <h3>Tasks </h3>
+  <h3 class="text-center b-b">Tasks </h3>
   <div class="col-lg-6">
     <div class="panel panel-default">
       <!-- Default panel contents -->
@@ -17,11 +17,14 @@
         <tbody>
           <tr data-ng-repeat="n in pending track by $index">
             <td>{{n.name}}</td>
-            <td>{{n.dueDate | date:'yyyy-MM-dd'}}</td>
+            <td>{{n.dueDate |date:'shortDate'}}</td>
             <td>{{n.priority}}</td>
             <td>
               <button type="button" class="btn btn-danger" aria-label="Left Align" data-ng-click="deleteTask(n._id)">
                 <span class="fa fa-trash-o" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-info" aria-label="Left Align" data-ng-click="initEdit(n)">
+                <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
               </button>
           </tr>
         </tbody>
@@ -44,11 +47,14 @@
         <tbody>
           <tr data-ng-repeat="n in overdue track by $index">
             <td>{{n.name}}</td>
-            <td>{{n.dueDate | date:'yyyy-MM-dd'}}</td>
+            <td>{{n.dueDate | date:'shortDate'}}</td>
             <td>{{n.priority}}</td>
             <td>
               <button type="button" class="btn btn-danger" aria-label="Left Align" data-ng-click="deleteTask(n._id)">
                 <span class="fa fa-trash-o" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-info" aria-label="Left Align" data-ng-click="initEdit(n)">
+                <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
               </button>
           </tr>
         </tbody>

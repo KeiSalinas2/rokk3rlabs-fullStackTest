@@ -9,6 +9,7 @@ angular.module('app.controller', [])
     };
 
     $scope.enableCreate = false;
+    $scope.isEdit = false;
     $scope.priorities = [{ type: 1 }, { type: 2 }, { type: 3 }, { type: 4 }, { type: 5 }];
 
     $scope.newTask = {};
@@ -43,7 +44,29 @@ angular.module('app.controller', [])
             $scope.overdue.push(task);
         });
       });
-    }
+    };
+
+    $scope.initEdit = function(task) {
+      task.dueDate = new Date(task.dueDate);
+      $scope.newTask = task;
+      $scope.isEdit = true;
+    };
+
+    $scope.updateTask = function(task) {
+      var data = {
+        id: task._id,
+        name: task.name,
+        dueDate: task.dueDate,
+        priority: !_.isNull(task.priority) ? task.priority.type : 'normal'
+      };
+
+      Api.updateTask(data).then(function(res) {
+        console.log('update', res);
+        $scope.loadTasks();
+        $scope.newTask = {};
+        $scope.isEdit = false;
+      });
+    };
 
     $scope.deleteTask = function(id) {
       Api.deleteTask(id).then(function(res) {
