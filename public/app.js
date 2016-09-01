@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ui.router', 'app.services'])
+angular.module('app', ['ui.router','app.controller', 'app.services'])
 
 angular
   .module('app')
@@ -15,4 +15,9 @@ angular
       });
 
     $urlRouterProvider.otherwise('/');
+  }]);
+
+angular.module('app.controller', [])
+  .controller('appController', ['$scope', '$state', function($scope, $state) {
+
   }]);
