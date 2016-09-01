@@ -5,6 +5,10 @@ var Task = require('./tasks');
 module.exports = router;
 
 
+router.post('/create', Task.createTask);
+
 router.get('/', Task.getTask);
 
-router.put('/', Task.updateTask);
+router.get('/destroy/:id', Task.destroyTask);
+
+router.post('/update', Task.updateTask);

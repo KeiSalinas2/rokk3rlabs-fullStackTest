@@ -1,6 +1,7 @@
 
 var express = require('express'),
 		app = express(),
+    expressValidator = require('express-validator')
 		port = 3001,
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
@@ -8,6 +9,8 @@ var express = require('express'),
 
 //view
 app.use(express.static(__dirname + '/build'));
+//validator
+app.use(expressValidator());
 
 //connection url
 var uri = 'mongodb://' + config.db.host + '/' + config.db.database;
