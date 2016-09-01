@@ -4,12 +4,27 @@
     <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading">Pending</div>
-      <div class="panel-body">
-        <p>...</p>
-      </div>
       <!-- Table -->
       <table class="table">
-        ...
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="n in [0,1,2,3,4]">
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>
+              <button type="button" class="btn btn-danger" aria-label="Left Align">
+                <span class="fa fa-trash-o" aria-hidden="true"></span>
+              </button>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -17,12 +32,26 @@
     <div class="panel panel-warning">
       <!-- Default panel contents -->
       <div class="panel-heading">Overdue</div>
-      <div class="panel-body">
-        <p>...</p>
-      </div>
-      <!-- Table -->
       <table class="table">
-        ...
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="n in [0,1,2,3,4]">
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>
+              <button type="button" class="btn btn-danger" aria-label="Left Align">
+                <span class="fa fa-trash-o" aria-hidden="true"></span>
+              </button>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
