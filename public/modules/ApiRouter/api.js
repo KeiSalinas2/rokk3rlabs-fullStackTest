@@ -11,4 +11,8 @@ angular.module('app.services').service('ApiService', ['$http', function($http) {
       return $http.post(url+ 'tasks/create?name='+ data.name + '&dueDate='+data.dueDate + '&priority=' + data.priority);
     };
 
+    this.deleteTask = function(id){
+      return $http.get(url + 'tasks/destroy/' + id);
+    };
+
   }]);

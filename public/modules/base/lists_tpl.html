@@ -20,7 +20,7 @@
             <td>{{n.dueDate | date:'yyyy-MM-dd'}}</td>
             <td>{{n.priority}}</td>
             <td>
-              <button type="button" class="btn btn-danger" aria-label="Left Align">
+              <button type="button" class="btn btn-danger" aria-label="Left Align" data-ng-click="deleteTask(n._id)">
                 <span class="fa fa-trash-o" aria-hidden="true"></span>
               </button>
           </tr>
@@ -47,7 +47,7 @@
             <td>{{n.dueDate | date:'yyyy-MM-dd'}}</td>
             <td>{{n.priority}}</td>
             <td>
-              <button type="button" class="btn btn-danger" aria-label="Left Align">
+              <button type="button" class="btn btn-danger" aria-label="Left Align" data-ng-click="deleteTask(n._id)">
                 <span class="fa fa-trash-o" aria-hidden="true"></span>
               </button>
           </tr>
