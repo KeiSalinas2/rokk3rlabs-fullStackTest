@@ -51,6 +51,7 @@ gulp.task('scriptsLibs', function() {
       './components/Chart.js/dist/Chart.min.js',
       './components/angular/angular.js',
       './components/angular-ui-router/release/angular-ui-router.min.js',
+      './components/angular-bootstrap/ui-bootstrap.min.js',
       './components/lodash/dist/lodash.min.js'
     ])
     .pipe(concat('libs.min.js'))
@@ -61,7 +62,9 @@ gulp.task('scriptsLibs', function() {
 /* Minify libs CSS */
 gulp.task('libsStyle', function() {
   return gulp.src([
-      './components/font-awesome/css/font-awesome.css'
+      './components/font-awesome/css/font-awesome.css',
+      './components/angular-bootstrap/ui-bootstrap.csp.css',
+      './components/bootstrap/dist/css/bootstrap.min.css'
     ])
     .pipe(concat('libs.min.css'))
     .pipe(minifyCss())
