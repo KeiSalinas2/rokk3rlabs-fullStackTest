@@ -4,7 +4,7 @@ angular.module('app.services').service('ApiService', ['$http', function($http) {
     var url = 'http://localhost:3001/';
 
     this.apiTest = function(){
-      return $http.get(url + 'users/');
+      return $http.get(url + 'tasks/');
     };
 
   }]);
