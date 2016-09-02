@@ -10,6 +10,9 @@ angular.module('app.controller', [])
 
     $scope.enableCreate = false;
     $scope.isEdit = false;
+    $scope.notificationSuccess = false;
+    $scope.notificationError = false;
+
     $scope.priorities = [{ type: 1 }, { type: 2 }, { type: 3 }, { type: 4 }, { type: 5 }];
 
     $scope.newTask = {};
@@ -23,14 +26,19 @@ angular.module('app.controller', [])
 
       Api.createTask(data).then(function(res) {
         console.log(res);
-        if (res.status === 201)
+        if (res.status === 201) {
+          $scope.notificationSuccess = true;
+          setTimeout(function() {
+            $scope.notificationSuccess = false;
+          }, 1000);
           $scope.loadTasks();
+        }
       })
     };
 
     $scope.loadTasks = function() {
 
-      Api.apiTest().then(function(resp) {
+      Api.apiLoadTasks().then(function(resp) {
         $scope.overdue = [];
         $scope.pending = [];
         var today = Date.parse(new Date());
@@ -43,7 +51,7 @@ angular.module('app.controller', [])
           else
             $scope.overdue.push(task);
         });
-      });
+      }, showError);
     };
 
     $scope.initEdit = function(task) {
@@ -65,7 +73,12 @@ angular.module('app.controller', [])
         $scope.loadTasks();
         $scope.newTask = {};
         $scope.isEdit = false;
-      });
+
+        $scope.notificationSuccess = true;
+        setTimeout(function() {
+          $scope.notificationSuccess = false;
+        }, 1000);
+      }, showError);
     };
 
     $scope.deleteTask = function(id) {
@@ -73,7 +86,15 @@ angular.module('app.controller', [])
         if (res.status === 200)
           $scope.loadTasks();
         console.log('delete', res);
-      });
+      }, showError);
     };
+
+    function showError() {
+      $scope.notificationError = true;
+      $scope.notificationSuccess = false;
+      setTimeout(function() {
+        $scope.notificationError = false;
+      }, 1000);
+    }
 
   }]);
