@@ -1,7 +1,7 @@
 angular.module('app.services').service('ApiService', ['$http', function($http) {
 
   'use strict';
-  var url = 'http://54.187.214.69:3001/';
+  var url = 'http://localhost:3001/';
 
   this.apiLoadTasks = function() {
     return $http.get(url + 'tasks/');
