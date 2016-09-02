@@ -12,6 +12,7 @@ angular.module('app.controller', [])
     $scope.isEdit = false;
     $scope.notificationSuccess = false;
     $scope.notificationError = false;
+    $scope.sortTasks = '';
 
     $scope.priorities = [{ type: 1 }, { type: 2 }, { type: 3 }, { type: 4 }, { type: 5 }];
 
@@ -52,6 +53,11 @@ angular.module('app.controller', [])
             $scope.overdue.push(task);
         });
       }, showError);
+    };
+
+    $scope.sortData = function(task) {
+      $scope.overdue = _.orderBy($scope.overdue, [task], ['asc']);
+      $scope.pending = _.orderBy($scope.pending, [task], ['asc']);
     };
 
     $scope.initEdit = function(task) {
