@@ -8,6 +8,13 @@
 
 <div class="row" ng-init="loadTasks()">
   <h3 class="text-center b-b">Tasks </h3>
+  <select name="singleSelect" class="form-control" ng-model="sortTasks">
+      <option value="">---Order By---</option>
+      <option value="-name">Name</option>
+      <option value="-priority">Priority</option>
+      <option value="-date">Date</option>
+  </select>
+  <br>
   <div class="col-lg-6">
     <div class="panel panel-default">
       <!-- Default panel contents -->
@@ -25,7 +32,7 @@
         <tbody>
           <tr data-ng-repeat="n in pending track by $index">
             <td>{{n.name}}</td>
-            <td>{{n.dueDate |date:'shortDate'}}</td>
+            <td>{{n.dueDate | date:'shortDate'}}</td>
             <td>{{n.priority}}</td>
             <td>
               <button type="button" class="btn btn-danger" aria-label="Left Align" data-ng-click="deleteTask(n._id)">
