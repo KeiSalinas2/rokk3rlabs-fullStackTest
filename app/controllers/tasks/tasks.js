@@ -39,7 +39,7 @@ Tasks.createTask = function getTask(req, res) {
 
 	//validate params
   req.checkQuery('priority', 'Invalid priority parameter').isInt({ min: 1, max: 5 }).notEmpty();
-  req.checkQuery('dueDate', 'Invalid dueDate parameter').notEmpty();
+  req.checkQuery('dueDate', 'Invalid dueDate parameter').isDate().notEmpty();
   req.checkQuery('name', 'Invalid name parameter').contains().notEmpty();
 
   var errors = req.validationErrors();
@@ -123,7 +123,7 @@ Tasks.updateTask = function updateTask(req, res) {
 	//validate params
 	req.checkQuery('id', 'Invalid id parameter').isMongoId().notEmpty();
   req.checkQuery('priority', 'Invalid priority parameter').isInt({ min: 1, max: 5 }).notEmpty();
-  req.checkQuery('dueDate', 'Invalid dueDate parameter').notEmpty();
+  req.checkQuery('dueDate', 'Invalid dueDate parameter').isDate().notEmpty();
   req.checkQuery('name', 'Invalid name parameter').contains().notEmpty();
 
   var errors = req.validationErrors();

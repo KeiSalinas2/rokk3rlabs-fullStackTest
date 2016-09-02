@@ -10,7 +10,16 @@ var express = require('express'),
 //view
 app.use(express.static(__dirname + '/build'));
 //validator
-app.use(expressValidator());
+app.use(expressValidator({
+ customValidators: {
+    isDate: function(value) {
+      var userDate = new Date(value);
+      if(isNaN(userDate))
+        return false
+      return true;
+    }
+ }
+}));
 
 //connection url
 var uri = 'mongodb://' + config.db.host + '/' + config.db.database;
